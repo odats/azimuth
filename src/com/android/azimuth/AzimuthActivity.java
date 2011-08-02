@@ -1,24 +1,69 @@
 package com.android.azimuth;
 
 import android.app.Activity;
+import android.hardware.Sensor;
+import android.hardware.SensorEvent;
+import android.hardware.SensorEventListener;
+import android.hardware.SensorManager;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.TextView;
 
-public class AzimuthActivity extends Activity
-{
-    /** Called when the activity is first created. */
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.LinkedList;
+
+public class AzimuthActivity extends Activity implements AccelerationChangeListener {
+
+    private SensorManager mSensorManager;
+    private Sensor mAccelerometer;
+    private AccelerationEventListener accelerationEventListener;
+
+    LinkedList<Float> movement = new LinkedList<Float>();
+
+    /**
+     * Called when the activity is first created.
+     */
     @Override
-    public void onCreate(Bundle savedInstanceState)
-    {
+    public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main);
+
+        mSensorManager = (SensorManager) getSystemService(SENSOR_SERVICE);
+        mAccelerometer = mSensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
+        accelerationEventListener = new AccelerationEventListener(this);
     }
 
-     public void onStartButtonClick(View view) {
-        final MapView mapEngine = (MapView) findViewById(R.id.mapEngine);
+    public void onStartButtonClick(View view) {
+        mSensorManager.unregisterListener(accelerationEventListener);
+        mSensorManager.registerListener(new AccelerationEventListener(this), mAccelerometer, SensorManager.SENSOR_DELAY_NORMAL);
+    }
 
-        float[] dataSource = new float[]{1,2,5,8,4,5,3,6,7,5,8,1,3,5,-2,-3};
-        mapEngine.setDataSource(dataSource);
+    protected void onResume() {
+        super.onResume();
+        mSensorManager.registerListener(accelerationEventListener, mAccelerometer, SensorManager.SENSOR_DELAY_NORMAL);
+    }
+
+    protected void onPause() {
+        super.onPause();
+        mSensorManager.unregisterListener(accelerationEventListener);
+    }
+
+    public void onAccelerationChange(float x1, float y1, float x2, float y2) {
+        String output = String.format("x is: %f / y is: %f", x2, y2);
+
+        final TextView infoLabel = (TextView) findViewById(R.id.infoLabel);
+		infoLabel.setText(output);
+
+        movement.addLast(x1);
+        movement.addLast(y1);
+        movement.addLast(x2);
+        movement.addLast(y2);
+        //Collections.addAll(movement, x1, y1, x2, y2);
+
+        final MapView mapEngine = (MapView) findViewById(R.id.mapEngine);
+        mapEngine.setDataSource(movement);
         mapEngine.invalidate();
+
     }
 }

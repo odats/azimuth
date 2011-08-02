@@ -7,6 +7,8 @@ import android.graphics.Paint;
 import android.util.AttributeSet;
 import android.view.View;
 
+import java.util.LinkedList;
+
 /**
  * Created by IntelliJ IDEA.
  * User: odats
@@ -15,11 +17,11 @@ import android.view.View;
  * To change this template use File | Settings | File Templates.
  */
 public class MapView extends View {
-    private final int scale = 10;
+    private final int scale = 1;
 
-    private float[] dataSource;
+    private LinkedList<Float> dataSource;
 
-    public void setDataSource(float[] dataSource) {
+    public void setDataSource(LinkedList<Float> dataSource) {
         this.dataSource = dataSource;
     }
 
@@ -51,11 +53,11 @@ public class MapView extends View {
         if (dataSource == null) {
             canvas.drawText("Data source is empty", 0, 10, mPaint);
             return;
-        } else if (dataSource.length < 4) {
+        } else if (dataSource.size() < 4) {
             canvas.drawText("Data source has less than 4 elements", 0, 10, mPaint);
             return;
-        } else if (dataSource.length % 4 != 0) {
-            canvas.drawText("Data source has wrong number of elements : " + dataSource.length, 0, 10, mPaint);
+        } else if (dataSource.size() % 4 != 0) {
+            canvas.drawText("Data source has wrong number of elements : " + dataSource.size(), 0, 10, mPaint);
             return;
         }
 
@@ -67,9 +69,9 @@ public class MapView extends View {
         canvas.translate(cx, cy);
 
         // draw path
-        for (int n = 2; n < dataSource.length; n += 2) {
-            canvas.drawLine(getScaledPoint(dataSource[n - 2]), getScaledPoint(dataSource[n - 1]),
-                    getScaledPoint(dataSource[n]), getScaledPoint(dataSource[n + 1]), mPaint);
+        for (int n = 2; n < dataSource.size(); n += 2) {
+            canvas.drawLine(getScaledPoint(dataSource.get(n - 2)), getScaledPoint(dataSource.get(n - 1)),
+                    getScaledPoint(dataSource.get(n)), getScaledPoint(dataSource.get(n + 1)), mPaint);
         }
     }
 
