@@ -69,6 +69,6 @@ public class AzimuthActivity extends Activity implements AccelerationChangeListe
 
 
         mapEngine.setDataSource(movement);
-        //mapEngine.invalidate();
+        mapEngine.invalidate();
     }
 }

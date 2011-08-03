@@ -74,7 +74,7 @@ public class MapView extends View {
                     getScaledPoint(dataSource.get(n)), getScaledPoint(dataSource.get(n + 1)), mPaint);
         }
 
-        invalidate();
+        //invalidate();
     }
 
     protected float getScaledPoint(float input) {
