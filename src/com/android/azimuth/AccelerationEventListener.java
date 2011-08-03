@@ -36,7 +36,7 @@ public class AccelerationEventListener implements SensorEventListener {
         float z = sensorEvent.values[2];
         double timeDiffInSeconds = (double)sensorEvent.timestamp / 1000000000000000.0;
 
-        System.out.println(String.format("x is: %f / y is: %f / z is: %f / timeDif is: %f", x, y, z, timeDiffInSeconds));
+        //System.out.println(String.format("x is: %f / y is: %f / z is: %f / timeDif is: %f", x, y, z, timeDiffInSeconds));
 
 
         AccelerationMath.PositionState prevState = positionStates.getLast();
@@ -47,6 +47,12 @@ public class AccelerationEventListener implements SensorEventListener {
         eventListener.onAccelerationChange(
                 (float) prevState.getCoordinateX(), (float) prevState.getCoordinateY(),
                 (float) currentState.getCoordinateX(), (float) currentState.getCoordinateY());
+
+        System.out.println(String.format("x : %1$f => %2$f / y : %3$f => %4$f",
+                (float) prevState.getCoordinateX(), (float) currentState.getCoordinateX(),
+                (float) prevState.getCoordinateY(), currentState.getCoordinateY()));
+
+        positionStates.remove(0);
     }
 
     public void onAccuracyChanged(Sensor sensor, int i) {

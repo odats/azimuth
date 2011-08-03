@@ -35,7 +35,8 @@ public class AzimuthActivity extends Activity implements AccelerationChangeListe
     }
 
     public void onStartButtonClick(View view) {
-        mSensorManager.unregisterListener(accelerationEventListener);
+        mSensorManager.unregisterListener(accelerationEventListener, mAccelerometer);
+        movement = new LinkedList<Float>();
         mSensorManager.registerListener(new AccelerationEventListener(this), mAccelerometer, SensorManager.SENSOR_DELAY_NORMAL);
     }
 
@@ -46,20 +47,19 @@ public class AzimuthActivity extends Activity implements AccelerationChangeListe
 
     protected void onPause() {
         super.onPause();
-        mSensorManager.unregisterListener(accelerationEventListener);
+        mSensorManager.unregisterListener(accelerationEventListener, mAccelerometer);
     }
 
     public void onAccelerationChange(float x1, float y1, float x2, float y2) {
-        String output = String.format("x is: %f / y is: %f", x2, y2);
+        /*final TextView infoLabel = (TextView) findViewById(R.id.infoLabel);
+		infoLabel.setText(String.format("x : %f => %f / y : %f => %f", x1, x2, y1, y2));*/
 
-        final TextView infoLabel = (TextView) findViewById(R.id.infoLabel);
-		infoLabel.setText(output);
-
-        movement.addLast(x1);
+       /* movement.addLast(x1);
         movement.addLast(y1);
         movement.addLast(x2);
-        movement.addLast(y2);
-        //Collections.addAll(movement, x1, y1, x2, y2);
+        movement.addLast(y2);*/
+
+        Collections.addAll(movement, x1, y1, x2, y2);
 
         final MapView mapEngine = (MapView) findViewById(R.id.mapEngine);
         mapEngine.setDataSource(movement);
