@@ -73,6 +73,8 @@ public class MapView extends View {
             canvas.drawLine(getScaledPoint(dataSource.get(n - 2)), getScaledPoint(dataSource.get(n - 1)),
                     getScaledPoint(dataSource.get(n)), getScaledPoint(dataSource.get(n + 1)), mPaint);
         }
+
+        invalidate();
     }
 
     protected float getScaledPoint(float input) {

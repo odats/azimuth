@@ -34,6 +34,7 @@ public class AccelerationEventListener implements SensorEventListener {
         float x = sensorEvent.values[0];
         float y = sensorEvent.values[1];
         float z = sensorEvent.values[2];
+
         double timeDiffInSeconds = (double)sensorEvent.timestamp / 1000000000000000.0;
 
         //System.out.println(String.format("x is: %f / y is: %f / z is: %f / timeDif is: %f", x, y, z, timeDiffInSeconds));
