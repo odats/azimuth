@@ -8,5 +8,9 @@ package com.android.azimuth;
  * To change this template use File | Settings | File Templates.
  */
 public interface AccelerationChangeListener {
-    public void onAccelerationChange(float x1, float y1, float x2, float y2);
+
+    /**
+     * Returns coordinates
+     */
+    public void onAccelerationChange(float ax, float ay, float x1, float y1, float x2, float y2);
 }

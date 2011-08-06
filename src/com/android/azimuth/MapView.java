@@ -17,7 +17,7 @@ import java.util.LinkedList;
  * To change this template use File | Settings | File Templates.
  */
 public class MapView extends View {
-    private final int scale = 1;
+    private final int scale = 2;
 
     private LinkedList<Float> dataSource;
 

@@ -37,19 +37,21 @@ public class AzimuthActivity extends Activity implements AccelerationChangeListe
         mSensorManager = (SensorManager) getSystemService(SENSOR_SERVICE);
         // Sensor.TYPE_LINEAR_ACCELERATION
         // http://developer.android.com/reference/android/hardware/SensorEvent.html#values
-        mAccelerometer = mSensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
+        //mAccelerometer = mSensorManager.getDefaultSensor(Sensor.TYPE_LINEAR_ACCELERATION);
+        mAccelerometer = mSensorManager.getDefaultSensor(Sensor.TYPE_LINEAR_ACCELERATION);
         accelerationEventListener = new AccelerationEventListener(this);
     }
 
     public void onStartButtonClick(View view) {
         mSensorManager.unregisterListener(accelerationEventListener, mAccelerometer);
         movement = new LinkedList<Float>();
-        mSensorManager.registerListener(new AccelerationEventListener(this), mAccelerometer, SensorManager.SENSOR_DELAY_UI);
+        accelerationEventListener = new AccelerationEventListener(this);
+        mSensorManager.registerListener(accelerationEventListener, mAccelerometer, SensorManager.SENSOR_DELAY_NORMAL);
     }
 
     protected void onResume() {
         super.onResume();
-        mSensorManager.registerListener(accelerationEventListener, mAccelerometer, SensorManager.SENSOR_DELAY_UI);
+        mSensorManager.registerListener(accelerationEventListener, mAccelerometer, SensorManager.SENSOR_DELAY_NORMAL);
     }
 
     protected void onPause() {
@@ -57,8 +59,8 @@ public class AzimuthActivity extends Activity implements AccelerationChangeListe
         mSensorManager.unregisterListener(accelerationEventListener, mAccelerometer);
     }
 
-    public void onAccelerationChange(float x1, float y1, float x2, float y2) {
-		infoLabel.setText(String.format("x : %f => %f / y : %f => %f", x1, x2, y1, y2));
+    public void onAccelerationChange(float ax, float ay, float x1, float y1, float x2, float y2) {
+		infoLabel.setText(String.format("ax = %f | ay = %f || x : %f => %f / y : %f => %f", ax, ay, x1, x2, y1, y2));
 
        /* movement.addLast(x1);
         movement.addLast(y1);

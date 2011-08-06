@@ -15,6 +15,8 @@ import java.util.LinkedList;
  */
 public class AccelerationEventListener implements SensorEventListener {
 
+    private long timestamp = 0;
+
     private AccelerationChangeListener eventListener;
 
     private LinkedList<AccelerationMath.PositionState> positionStates = new LinkedList<AccelerationMath.PositionState>();
@@ -35,17 +37,43 @@ public class AccelerationEventListener implements SensorEventListener {
         float y = sensorEvent.values[1];
         float z = sensorEvent.values[2];
 
-        double timeDiffInSeconds = (double)sensorEvent.timestamp / 1000000000000000.0;
 
-        //System.out.println(String.format("x is: %f / y is: %f / z is: %f / timeDif is: %f", x, y, z, timeDiffInSeconds));
+        // alpha is calculated as t / (t + dT)
+        // with t, the low-pass filter's time-constant
+        // and dT, the event delivery rate
+      /*  double alpha = 0.8;
 
+        double[] gravity = new double[]{0, 0, 0};
+        double[] linear_acceleration = new double[]{0, 0, 0};
+
+        gravity[0] = alpha * gravity[0] + (1 - alpha) * sensorEvent.values[0];
+        gravity[1] = alpha * gravity[1] + (1 - alpha) * sensorEvent.values[1];
+        gravity[2] = alpha * gravity[2] + (1 - alpha) * sensorEvent.values[2];
+
+        linear_acceleration[0] = sensorEvent.values[0] - gravity[0];
+        linear_acceleration[1] = sensorEvent.values[1] - gravity[1];
+        linear_acceleration[2] = sensorEvent.values[2] - gravity[2];
+
+        float x = (float) linear_acceleration[0];
+        float y = (float) linear_acceleration[1];
+        float z = (float) linear_acceleration[2];
+
+        */
+        // calculate time difference
+        double timeDiffInSeconds;
+        if(timestamp == 0){
+            timeDiffInSeconds = 0.2;
+        } else {
+            timeDiffInSeconds = (sensorEvent.timestamp - timestamp) / 1000000000.0;
+        }
+        timestamp = sensorEvent.timestamp;
 
         AccelerationMath.PositionState prevState = positionStates.getLast();
         AccelerationMath.PositionState currentState = AccelerationMath.calculate(x, y, 30, timeDiffInSeconds, prevState);
 
         positionStates.addLast(currentState);
 
-        eventListener.onAccelerationChange(
+        eventListener.onAccelerationChange(x, y,
                 (float) prevState.getCoordinateX(), (float) prevState.getCoordinateY(),
                 (float) currentState.getCoordinateX(), (float) currentState.getCoordinateY());
 
