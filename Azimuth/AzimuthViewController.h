@@ -8,7 +8,11 @@
 
 #import <UIKit/UIKit.h>
 
-@interface AzimuthViewController : UIViewController<UIAccelerometerDelegate>
+@class AZView;
+
+@interface AzimuthViewController : UIViewController<UIAccelerometerDelegate> {
+    AZView *view;
+}
 
 @property (readonly) NSMutableArray *coordinates;
 

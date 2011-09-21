@@ -7,8 +7,10 @@
 //
 
 #import "AzimuthViewController.h"
+#import "AZView.h"
 
 #define kUpdateFrequency 30
+
 @implementation AzimuthViewController
 
 @synthesize coordinates;
@@ -56,6 +58,10 @@
 -(void)accelerometer:(UIAccelerometer *)accelerometer didAccelerate:(UIAcceleration *)acceleration
 {
     // Update the accelerometer graph view
+    if ([coordinates count] % 15 == 0) {
+        [view setCoordinates:coordinates];
+        [view setNeedsDisplay];
+    }
     
 }
 @end
