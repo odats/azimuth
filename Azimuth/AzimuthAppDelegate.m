@@ -2,8 +2,8 @@
 //  AzimuthAppDelegate.m
 //  Azimuth
 //
-//  Created by Роман Романчук on 21.09.11.
-//  Copyright 2011 Epam. All rights reserved.
+//  Created by Roman Romanchuk on 21.09.11.
+//  Copyright 2011. All rights reserved.
 //
 
 #import "AzimuthAppDelegate.h"

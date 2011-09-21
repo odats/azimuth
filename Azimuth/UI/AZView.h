@@ -1,5 +1,5 @@
 //
-//  AzimuthViewController.h
+//  AzimuthView.h
 //  Azimuth
 //
 //  Created by Roman Romanchuk on 21.09.11.
@@ -8,6 +8,10 @@
 
 #import <UIKit/UIKit.h>
 
-@interface AzimuthViewController : UIViewController
+@interface AZView : UIView {
+    
+}
+
+@property (retain) NSArray *coordinates;
 
 @end
