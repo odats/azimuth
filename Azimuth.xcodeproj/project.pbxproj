@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		3E0FD007142A721000B57434 /* AZView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E0FD006142A721000B57434 /* AZView.m */; };
 		3E0FD00B142A800F00B57434 /* AZPoint.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E0FD00A142A800F00B57434 /* AZPoint.m */; };
+		3E0FD00E142A8CFA00B57434 /* AZPositionState.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E0FD00D142A8CFA00B57434 /* AZPositionState.m */; };
 		3EB977EF1429382C0001FE73 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3EB977EE1429382C0001FE73 /* UIKit.framework */; };
 		3EB977F11429382C0001FE73 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3EB977F01429382C0001FE73 /* Foundation.framework */; };
 		3EB977F31429382C0001FE73 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3EB977F21429382C0001FE73 /* CoreGraphics.framework */; };
@@ -25,6 +26,8 @@
 		3E0FD006142A721000B57434 /* AZView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AZView.m; path = UI/AZView.m; sourceTree = "<group>"; };
 		3E0FD009142A800F00B57434 /* AZPoint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AZPoint.h; path = Model/AZPoint.h; sourceTree = "<group>"; };
 		3E0FD00A142A800F00B57434 /* AZPoint.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AZPoint.m; path = Model/AZPoint.m; sourceTree = "<group>"; };
+		3E0FD00C142A8CFA00B57434 /* AZPositionState.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AZPositionState.h; path = Model/AZPositionState.h; sourceTree = "<group>"; };
+		3E0FD00D142A8CFA00B57434 /* AZPositionState.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AZPositionState.m; path = Model/AZPositionState.m; sourceTree = "<group>"; };
 		3EB977EA1429382C0001FE73 /* Azimuth.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Azimuth.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3EB977EE1429382C0001FE73 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		3EB977F01429382C0001FE73 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -78,6 +81,8 @@
 			children = (
 				3E0FD009142A800F00B57434 /* AZPoint.h */,
 				3E0FD00A142A800F00B57434 /* AZPoint.m */,
+				3E0FD00C142A8CFA00B57434 /* AZPositionState.h */,
+				3E0FD00D142A8CFA00B57434 /* AZPositionState.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -203,6 +208,7 @@
 				3EB978051429382D0001FE73 /* AzimuthViewController.m in Sources */,
 				3E0FD007142A721000B57434 /* AZView.m in Sources */,
 				3E0FD00B142A800F00B57434 /* AZPoint.m in Sources */,
+				3E0FD00E142A8CFA00B57434 /* AZPositionState.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
