@@ -33,7 +33,7 @@
     
     coordinates = [NSMutableArray array];
     [coordinates retain];
-    
+    lastTimestamp = 0;
     [[UIAccelerometer sharedAccelerometer] setUpdateInterval:1.0 / kUpdateFrequency];
     [[UIAccelerometer sharedAccelerometer] setDelegate:self];
 }
@@ -62,6 +62,13 @@
         [view setCoordinates:coordinates];
         [view setNeedsDisplay];
     }
+    NSTimeInterval timeDiffInSeconds;
+    if (lastTimestamp == 0){
+        timeDiffInSeconds = 0.2;
+    } else {
+        timeDiffInSeconds = ([acceleration timestamp] - lastTimestamp) / 1000000000.0;
+    }
+    lastTimestamp = [acceleration timestamp];
     
 }
 @end

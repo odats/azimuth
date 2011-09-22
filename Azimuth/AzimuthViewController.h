@@ -12,6 +12,7 @@
 
 @interface AzimuthViewController : UIViewController<UIAccelerometerDelegate> {
     AZView *view;
+    NSTimeInterval lastTimestamp;
 }
 
 @property (readonly) NSMutableArray *coordinates;
