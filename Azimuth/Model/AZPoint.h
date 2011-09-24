@@ -10,6 +10,9 @@
 
 @interface AZPoint : NSObject
 
-@property (assign) float x;
-@property (assign) float y;
+@property (assign) double x;
+@property (assign) double y;
+
+- (id)initWithX:(double) xCoord andY:(double) yCoord;
+
 @end

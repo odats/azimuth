@@ -8,13 +8,11 @@
 
 #import <UIKit/UIKit.h>
 
-@class AZView;
-
 @interface AzimuthViewController : UIViewController<UIAccelerometerDelegate> {
-    AZView *view;
     NSTimeInterval lastTimestamp;
 }
 
 @property (readonly) NSMutableArray *coordinates;
+@property (readonly) NSMutableArray *states;
 
 @end

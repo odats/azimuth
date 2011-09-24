@@ -10,10 +10,10 @@
 
 @interface AZPositionState : NSObject
 
-@property (assign) float startingSpeedX;
-@property (assign) float startingSpeedY;
-@property (assign) float coordinateX;
-@property (assign) float coordinateY;
-@property (assign) float azimuth;
+@property (assign) double startingSpeedX;
+@property (assign) double startingSpeedY;
+@property (assign) double coordinateX;
+@property (assign) double coordinateY;
+@property (assign) double azimuth;
 
 @end

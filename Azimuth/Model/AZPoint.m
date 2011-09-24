@@ -13,7 +13,7 @@
 @synthesize x;
 @synthesize y;
 
-- (id)initWithX:(float) xCoord andY:(float) yCoord
+- (id)initWithX:(double) xCoord andY:(double) yCoord
 {
     self = [super init];
     if (self) {

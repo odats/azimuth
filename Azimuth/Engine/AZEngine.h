@@ -12,6 +12,6 @@
 
 @interface AZEngine : NSObject
 
-+(AZPositionState *)calculateWith:(float)ax andWith:(float)ay andAzimuth:(float)azimuth andInterval:(float) timeDiff andPreviousState:(AZPositionState *)previousState;
++(AZPositionState *)calculateWith:(double)ax andWith:(double)ay andAzimuth:(double)azimuth andInterval:(double) timeDiff andPreviousState:(AZPositionState *)previousState;
 
 @end

@@ -30,19 +30,18 @@
 {
     if ([coordinates count] > 0) {
         AZPoint *currentPoint;
-        currentPoint = [coordinates objectAtIndex:0];
-        
         CGContextRef context = UIGraphicsGetCurrentContext();
         CGContextSetStrokeColorWithColor(context, [UIColor redColor].CGColor);
     
         // Draw them with a 1.0 stroke width so they are a bit more visible.
         CGContextSetLineWidth(context, 1.0);
-        
-        CGContextMoveToPoint(context, currentPoint.x, currentPoint.y); //start at this point
+        float centreX = rect.size.width / 2;
+        float centreY = rect.size.height / 2;
+        CGContextMoveToPoint(context, centreX, centreY); //start at this point
 
         for (int i=1; i < [coordinates count]; i++) {
             currentPoint = [coordinates objectAtIndex:i];
-            CGContextAddLineToPoint(context, currentPoint.x, currentPoint.y); //draw to this point
+            CGContextAddLineToPoint(context, centreX + currentPoint.x, centreY + currentPoint.y); //draw to this point
         }
         
         // and now draw the Path!
